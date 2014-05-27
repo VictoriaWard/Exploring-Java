@@ -1,6 +1,7 @@
 package salaryCalculator;
 
 public class Employee {
+	//declare variables
 	double minimumPay = 8.0;
 	int maximumHours = 60;
 	double overtimeRate = 1.5;
@@ -9,13 +10,15 @@ public class Employee {
 	public String name;
 	public double basePay;
 	public int numHoursWorked;
-		
+	
+	//class constructor	
 	public Employee(String n, double base, int numHours) {
 		name = n;
 		basePay = base;
 		numHoursWorked = numHours;
 	}
-		
+	
+	//get value methods
 	double getMinPay(){
 			return minimumPay;
 		}
@@ -32,13 +35,18 @@ public class Employee {
 			return maxBaseHours;
 		}
 				
-				
+	//method to calculate and display total pay for each employee by name			
 	void calculateTotalPay() {
 		if (basePay >= getMinPay() & numHoursWorked <= getMaxHours())
 			if (numHoursWorked <= getMaxBaseHours())
-					System.out.println("Total pay is: $" + basePay * numHoursWorked);
-			else System.out.println("Total pay is: $" + ((basePay * getMaxBaseHours()) + (basePay * getOvertimeRate()) * (numHoursWorked - getMaxBaseHours())));
-		else System.out.println("The number of hours worked is too high or the base pay entered is too low.");
+					System.out.println("Total pay for " + name + " is: $" + basePay * numHoursWorked);
+			else System.out.println("Total pay for " + name + " is: $" + ((basePay * getMaxBaseHours()) + (basePay * getOvertimeRate()) * (numHoursWorked - getMaxBaseHours())));
+		else if (basePay <= getMinPay() & numHoursWorked >= getMaxHours())
+			System.out.println("The number of hours entered is too high and the base pay entered is too low for " + name);
+		else if (basePay <= getMinPay() & numHoursWorked <= getMaxHours())
+			System.out.println("The base pay entered is too low for " + name);
+		else 
+			System.out.println("The number of hours entered is too high for " + name);
 	}
 
 }
