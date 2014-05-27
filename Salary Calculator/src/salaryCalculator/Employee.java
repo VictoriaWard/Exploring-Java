@@ -47,9 +47,9 @@ public class Employee {
 			if (numHoursWorked <= getMaxBaseHours())
 				System.out.println("Total pay for " + name + " is: $" +  moneyFormat.format(basePay * numHoursWorked));
 			else System.out.println("Total pay for " + name + " is: $" +  moneyFormat.format(((basePay * getMaxBaseHours()) + (basePay * getOvertimeRate()) * (numHoursWorked - getMaxBaseHours()))));
-		else if (basePay <= getMinPay() & numHoursWorked >= getMaxHours())
+		else if (basePay < getMinPay() & numHoursWorked > getMaxHours())
 			System.out.println("The number of hours entered is too high and the base pay entered is too low for " + name);
-		else if (basePay <= getMinPay() & numHoursWorked <= getMaxHours())
+		else if (basePay < getMinPay() & numHoursWorked <= getMaxHours())
 			System.out.println("The base pay entered is too low for " + name);
 		else 
 			System.out.println("The number of hours entered is too high for " + name);
