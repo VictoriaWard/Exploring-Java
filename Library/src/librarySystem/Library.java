@@ -38,16 +38,16 @@ public class Library {
 	
 	void borrow(Book b) {
 		System.out.println("Borrowing " + b.title + "...\n");
-		if (checkCollection(b) == true)
+		if (checkCollection(b) == true) {
 			if (b.isBorrowed())
 				System.out.println("Sorry, " + b.title + " is already on loan. \n");
-
-			else
-				b.borrowed();
+			if (b.isBorrowed() == false)
 				System.out.println("You have succesfully borrowed " + b.title + "\n");
+				b.borrowed();
+		}
+		
 		if (checkCollection(b) == false)
-			System.out.println("Sorry, " + b.title + " is not in our collection. \n");
-					
+			System.out.println("Sorry, " + b.title + " is not in our collection. \n");			
 	}
 	
 	void returnBook(Book b) {
@@ -55,7 +55,6 @@ public class Library {
 		b.returned();
 	}
 
-	
 	public static void main(String [] args) {
 		//create some Book class instances
 		Book braveNew = new Book("Brave New World");
@@ -72,19 +71,20 @@ public class Library {
 		Library mainstreet = new Library("Main Street Library", "33 Main Street, Big City, 32322", "Monday to Saturday: 9am to 6pm", new Book [] {harrypotter, prideandprejudice, blackbeauty, treasureisland});
 	
 		//tests
+		System.out.println(national.checkCollection(treasureisland));
 		national.displayOpeningHours();
 		national.displayAddress();
 		national.displayBookCollection();
 		national.borrow(braveNew);
-		national.borrow(treasureisland); //fails
-		national.borrow(braveNew);	//fails
+		national.borrow(treasureisland); 
+		national.borrow(braveNew);	
 		national.returnBook(braveNew);
 		national.borrow(braveNew);
 		national.borrow(catch22);
 		
 		mainstreet.displayBookCollection();
 		mainstreet.borrow(treasureisland);
-		mainstreet.borrow(devilsChaplain);	//fails
+		mainstreet.borrow(devilsChaplain);	
 		mainstreet.returnBook(treasureisland);
 		
 	}
