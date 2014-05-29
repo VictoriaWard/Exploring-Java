@@ -1,10 +1,10 @@
 package librarySystem;
 
 public class Library {
-	String name;
-	String address;
-	String openingHours;
-	Book [] bookCollection; //= new Book [100]; // do i need to add 100 here?
+	private String name;
+	private String address;
+	private String openingHours;
+	private Book [] bookCollection; //= new Book [100]; // do i need to add 100 here?
 	
 	Library(String n, String a, String o, Book [] books) {
 		name = n;
@@ -13,22 +13,22 @@ public class Library {
 		bookCollection = books;
 	}
 
-	void displayOpeningHours() {
+	private void displayOpeningHours() {
 		System.out.println(name + "'s opening hours are: " + openingHours + "\n");
 	}
 	
-	void displayAddress() {
+	private void displayAddress() {
 		System.out.println(name + "'s address is: " + address + "\n");
 	}
 	
-	void displayBookCollection() {
+	private void displayBookCollection() {
 		System.out.print(name + " has the following books in its collection: \n");
 		for (Book b: bookCollection)
 			System.out.println(b.title);
 		System.out.print("\n");
 	}
 	
-	boolean checkCollection(Book b) {
+	private boolean checkCollection(Book b) {
 		for (Book bookInCollection: bookCollection)
 			if ((b.title).equals(bookInCollection.title))
 				return true;
@@ -36,21 +36,24 @@ public class Library {
 		
 	}
 	
-	void borrow(Book b) {
+	private void borrow(Book b) {
 		System.out.println("Borrowing " + b.title + "...\n");
 		if (checkCollection(b) == true) {
-			if (b.isBorrowed())
+			if (b.isBorrowed()) 
 				System.out.println("Sorry, " + b.title + " is already on loan. \n");
-			if (b.isBorrowed() == false)
+			
+			else {
 				System.out.println("You have succesfully borrowed " + b.title + "\n");
 				b.borrowed();
+			}
 		}
 		
-		if (checkCollection(b) == false)
-			System.out.println("Sorry, " + b.title + " is not in our collection. \n");			
+		else {
+			System.out.println("Sorry, " + b.title + " is not in our collection. \n");
+		}
 	}
 	
-	void returnBook(Book b) {
+	private void returnBook(Book b) {
 		System.out.print("You have successfully returned " + b.title + ". Thank you. \n");
 		b.returned();
 	}
